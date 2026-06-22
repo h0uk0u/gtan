@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>青葉みらい高等学校</title>
+  <style>
+    :root {
+      --ink: #18222f;
+      --muted: #66717f;
+      --line: #d9e0e8;
+      --paper: #f7f9fb;
+      --white: #ffffff;
+      --green: #1f6f58;
+      --navy: #1c3554;
+      --gold: #c9912e;
+      --coral: #d65c4b;
+      --sky: #dcecf6;
+      --shadow: 0 18px 50px rgba(24, 34, 47, 0.13);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", system-ui, sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 76px;
+      padding: 0 44px;
+      background: rgba(255, 255, 255, 0.92);
+      border-bottom: 1px solid rgba(217, 224, 232, 0.86);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      min-width: max-content;
+    }
+
+    .crest {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      color: var(--white);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.22), transparent 42%),
+        var(--green);
+      border: 1px solid rgba(24, 34, 47, 0.1);
+      border-radius: 8px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand-name {
+      display: grid;
+      line-height: 1.25;
+    }
+
+    .brand-name strong {
+      font-size: 17px;
+      letter-spacing: 0;
+    }
+
+    .brand-name span {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #334153;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav a {
+      padding: 10px 12px;
+      border-radius: 8px;
+    }
+
+    .nav a:hover {
+      background: #edf3f6;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: max-content;
+    }
+
+    .icon-btn,
+    .primary-btn,
+    .outline-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      border-radius: 8px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .icon-btn {
+      width: 40px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      color: var(--navy);
+    }
+
+    .icon-btn svg,
+    .primary-btn svg,
+    .outline-btn svg {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+    }
+
+    .primary-btn {
+      gap: 8px;
+      padding: 0 16px;
+      border: 1px solid var(--green);
+      background: var(--green);
+      color: var(--white);
+      box-shadow: 0 10px 22px rgba(31, 111, 88, 0.22);
+    }
+
+    .outline-btn {
+      gap: 8px;
+      padding: 0 16px;
+      border: 1px solid #b9c6d0;
+      background: rgba(255, 255, 255, 0.86);
+      color: var(--navy);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: calc(100vh - 76px);
+      padding: 54px 44px 28px;
+      background:
+        radial-gradient(circle at 18% 26%, rgba(220, 236, 246, 0.94), transparent 35%),
+        linear-gradient(118deg, #f6fafb 0%, #edf4f2 50%, #f8f4ea 100%);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 0.88fr) minmax(430px, 1.12fr);
+      gap: 42px;
+      align-items: center;
+      max-width: 1220px;
+      min-height: calc(100vh - 170px);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 18px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .eyebrow::before {
+      width: 34px;
+      height: 2px;
+      background: var(--gold);
+      content: "";
+    }
+
+    h1 {
+      max-width: 620px;
+      margin: 0;
+      font-size: clamp(38px, 5.1vw, 72px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 560px;
+      margin: 24px 0 0;
+      color: #435064;
+      font-size: clamp(16px, 1.5vw, 18px);
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      max-width: 560px;
+      margin-top: 40px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--line);
+      box-shadow: 0 18px 34px rgba(24, 34, 47, 0.08);
+    }
+
+    .stat {
+      min-height: 92px;
+      padding: 15px 18px;
+      background: rgba(255, 255, 255, 0.82);
+    }
+
+    .stat b {
+      display: block;
+      font-size: 26px;
+      line-height: 1.1;
+      color: var(--navy);
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .campus-frame {
+      position: relative;
+      min-height: 570px;
+      overflow: hidden;
+      border: 1px solid rgba(24, 34, 47, 0.12);
+      border-radius: 8px;
+      background:
+        linear-gradient(rgba(24, 34, 47, 0.04), rgba(24, 34, 47, 0.1)),
+        linear-gradient(180deg, #cfe8f6 0 33%, #d7ead8 33% 58%, #a9c795 58% 100%);
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+
+    .campus-frame::before {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.18), transparent 24%, transparent 76%, rgba(28, 53, 84, 0.18)),
+        radial-gradient(circle at 78% 18%, rgba(255, 255, 255, 0.9) 0 7%, transparent 7.4%);
+      content: "";
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .campus-visual {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .notice-panel {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 8px;
+      backdrop-filter: blur(16px);
+    }
+
+    .notice-panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .notice-panel strong {
+      display: block;
+      color: var(--ink);
+      font-size: 17px;
+    }
+
+    .scroll-cue {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      max-width: 1220px;
+      margin: 0 auto;
+      color: #556171;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .scroll-cue::after {
+      flex: 1;
+      height: 1px;
+      background: rgba(85, 97, 113, 0.28);
+      content: "";
+    }
+
+    .section {
+      padding: 70px 44px;
+    }
+
+    .section:nth-of-type(even) {
+      background: var(--white);
+    }
+
+    .section-inner {
+      max-width: 1220px;
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 28px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: clamp(26px, 3vw, 40px);
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .section-copy {
+      max-width: 520px;
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+    }
+
+    .feature-news {
+      min-height: 330px;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(28, 53, 84, 0.92), rgba(31, 111, 88, 0.9)),
+        repeating-linear-gradient(45deg, transparent 0 12px, rgba(255, 255, 255, 0.08) 12px 13px);
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .tag {
+      display: inline-flex;
+      width: fit-content;
+      min-height: 28px;
+      align-items: center;
+      padding: 0 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.18);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .feature-news h3 {
+      max-width: 680px;
+      margin: 18px 0 10px;
+      font-size: clamp(24px, 3vw, 40px);
+      line-height: 1.22;
+      letter-spacing: 0;
+    }
+
+    .feature-news p,
+    .club-card p,
+    .program-card p {
+      margin: 0;
+    }
+
+    .news-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .news-item {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 16px;
+      align-items: start;
+      min-height: 96px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .news-item time {
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .news-item strong {
+      display: block;
+      line-height: 1.45;
+    }
+
+    .news-item span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .programs {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .program-card {
+      min-height: 250px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      box-shadow: 0 12px 28px rgba(24, 34, 47, 0.06);
+    }
+
+    .program-card .number {
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .program-card h3 {
+      margin: 24px 0 12px;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    .program-card p {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .life-band {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .calendar {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+      overflow: hidden;
+    }
+
+    .calendar-row {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      min-height: 82px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .calendar-row:last-child {
+      border-bottom: 0;
+    }
+
+    .calendar-date {
+      display: grid;
+      place-items: center;
+      background: #eef4f2;
+      color: var(--green);
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .calendar-text {
+      padding: 18px 20px;
+    }
+
+    .calendar-text strong {
+      display: block;
+    }
+
+    .calendar-text span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .club-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .club-card {
+      min-height: 150px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--white);
+    }
+
+    .club-card svg {
+      width: 28px;
+      height: 28px;
+      color: var(--coral);
+    }
+
+    .club-card h3 {
+      margin: 14px 0 6px;
+      font-size: 18px;
+    }
+
+    .club-card p {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .admissions {
+      padding: 56px;
+      border-radius: 8px;
+      color: var(--white);
+      background:
+        linear-gradient(110deg, rgba(24, 34, 47, 0.93), rgba(28, 53, 84, 0.88)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.09) 0 1px, transparent 1px 42px);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .admissions h2 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 3.4vw, 44px);
+      line-height: 1.2;
+    }
+
+    .admissions p {
+      max-width: 720px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.78);
+      font-weight: 600;
+    }
+
+    .footer {
+      padding: 34px 44px;
+      color: #d7dee5;
+      background: #172333;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      max-width: 1220px;
+      margin: 0 auto;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 980px) {
+      .site-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px 22px;
+      }
+
+      .nav {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 2px;
+      }
+
+      .header-actions {
+        position: absolute;
+        right: 22px;
+        top: 18px;
+      }
+
+      .header-actions .primary-btn {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 36px 22px 24px;
+      }
+
+      .hero-inner,
+      .news-grid,
+      .life-band,
+      .admissions {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-inner {
+        min-height: auto;
+      }
+
+      .campus-frame {
+        min-height: 430px;
+      }
+
+      .section {
+        padding: 54px 22px;
+      }
+
+      .programs {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .brand-name strong {
+        font-size: 15px;
+      }
+
+      .nav {
+        gap: 0;
+        font-size: 13px;
+      }
+
+      .nav a {
+        padding: 8px 10px;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .notice-panel,
+      .section-head,
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .notice-panel {
+        display: flex;
+      }
+
+      .news-item,
+      .calendar-row,
+      .club-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .calendar-date {
+        min-height: 54px;
+      }
+
+      .admissions {
+        padding: 30px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#">
+      <span class="crest">A</span>
+      <span class="brand-name">
+        <strong>青葉みらい高等学校</strong>
+        <span>Aoba Mirai High School</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="主要メニュー">
+      <a href="#news">お知らせ</a>
+      <a href="#program">学び</a>
+      <a href="#life">学校生活</a>
+      <a href="#admission">入試情報</a>
+      <a href="#access">アクセス</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="icon-btn" type="button" aria-label="検索">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-3.6-3.6"></path>
+        </svg>
+      </button>
+      <a class="primary-btn" href="#admission">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14"></path>
+          <path d="m12 5 7 7-7 7"></path>
+        </svg>
+        資料請求
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">2026年度 学校説明会 受付中</p>
+          <h1>問いを持つ人が、未来を動かす。</h1>
+          <p class="lead">
+            青葉みらい高等学校は、探究・国際・地域連携を軸に、自分の関心を社会へ接続する学びを育てる共学校です。
+          </p>
+          <div class="hero-actions">
+            <a class="primary-btn" href="#admission">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M8 2v4"></path>
+                <path d="M16 2v4"></path>
+                <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                <path d="M3 10h18"></path>
+              </svg>
+              説明会日程
+            </a>
+            <a class="outline-btn" href="#program">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5V5a2 2 0 0 1 2-2h13v18H6a2 2 0 0 1-2-1.5Z"></path>
+                <path d="M8 7h7"></path>
+                <path d="M8 11h7"></path>
+              </svg>
+              学びを見る
+            </a>
+          </div>
+
+          <div class="hero-stats" aria-label="学校概要">
+            <div class="stat">
+              <b>18</b>
+              <span>探究プロジェクト</span>
+            </div>
+            <div class="stat">
+              <b>42</b>
+              <span>部活動・同好会</span>
+            </div>
+            <div class="stat">
+              <b>96%</b>
+              <span>進路満足度</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="campus-frame" aria-label="青葉みらい高等学校のキャンパス風景">
+          <svg class="campus-visual" viewBox="0 0 760 620" role="img" aria-label="校舎と中庭">
+            <defs>
+              <linearGradient id="building" x1="0" x2="1">
+                <stop offset="0" stop-color="#f3efe6"></stop>
+                <stop offset="1" stop-color="#d9dfdf"></stop>
+              </linearGradient>
+              <linearGradient id="glass" x1="0" x2="1">
+                <stop offset="0" stop-color="#8fb8cb"></stop>
+                <stop offset="1" stop-color="#d3ecf4"></stop>
+              </linearGradient>
+            </defs>
+            <path d="M0 420 C140 360 240 392 364 344 C502 292 650 310 760 250 V620 H0 Z" fill="#7da86c"></path>
+            <path d="M0 484 C150 430 300 468 438 420 C574 372 658 386 760 340 V620 H0 Z" fill="#5f955b"></path>
+            <path d="M78 308 L376 222 L674 308 V444 H78 Z" fill="url(#building)"></path>
+            <path d="M128 266 L376 190 L624 266 L590 280 L376 220 L162 280 Z" fill="#b85445"></path>
+            <path d="M162 324 H590 V444 H162 Z" fill="#eef0ea"></path>
+            <path d="M356 274 H402 V444 H356 Z" fill="#1c3554"></path>
+            <path d="M194 340 H246 V384 H194 Z M274 340 H326 V384 H274 Z M434 340 H486 V384 H434 Z M514 340 H566 V384 H514 Z" fill="url(#glass)"></path>
+            <path d="M178 408 H334 M424 408 H580" stroke="#b8c0bd" stroke-width="12" stroke-linecap="round"></path>
+            <path d="M130 474 C226 440 314 456 380 486 C446 516 532 520 654 474" fill="none" stroke="#e9d9b8" stroke-width="30" stroke-linecap="round"></path>
+            <path d="M86 408 C118 386 139 358 144 320 C174 368 164 406 132 431 Z" fill="#2f7c61"></path>
+            <path d="M636 402 C666 376 682 348 686 308 C720 356 708 402 674 430 Z" fill="#2f7c61"></path>
+            <circle cx="116" cy="418" r="12" fill="#254f43"></circle>
+            <circle cx="658" cy="417" r="12" fill="#254f43"></circle>
+            <path d="M308 500 h34 l12 66 h-58 Z" fill="#2f3a49"></path>
+            <circle cx="325" cy="480" r="18" fill="#d65c4b"></circle>
+            <path d="M414 494 h32 l17 70 h-58 Z" fill="#1c3554"></path>
+            <circle cx="430" cy="474" r="17" fill="#c9912e"></circle>
+            <path d="M346 536 C376 516 404 516 438 536" fill="none" stroke="#f4f0e8" stroke-width="8" stroke-linecap="round"></path>
+          </svg>
+          <div class="notice-panel">
+            <p>
+              <strong>6月29日 オープンスクール</strong>
+              授業体験、部活動見学、個別相談を同日開催します。
+            </p>
+            <a class="outline-btn" href="#admission">詳細</a>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-cue">Aoba Mirai Topics</div>
+    </section>
+
+    <section class="section" id="news">
+      <div class="section-inner">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">お知らせ</h2>
+            <p class="section-copy">学校説明会、行事、在校生の活動を更新しています。</p>
+          </div>
+          <a class="outline-btn" href="#">一覧</a>
+        </div>
+
+        <div class="news-grid">
+          <article class="feature-news">
+            <span class="tag">PICK UP</span>
+            <h3>2年生の探究チームが、地域防災アプリの試作発表を行いました。</h3>
+            <p>自治体・大学研究室と連携し、避難経路の可視化に取り組んでいます。</p>
+          </article>
+
+          <div class="news-list">
+            <article class="news-item">
+              <time datetime="2026-06-18">06.18</time>
+              <div>
+                <strong>夏季学校説明会の予約を開始しました</strong>
+                <span>中学生・保護者対象</span>
+              </div>
+            </article>
+            <article class="news-item">
+              <time datetime="2026-06-12">06.12</time>
+              <div>
+                <strong>吹奏楽部が県大会への出場を決めました</strong>
+                <span>部活動</span>
+              </div>
+            </article>
+            <article class="news-item">
+              <time datetime="2026-06-05">06.05</time>
+              <div>
+                <strong>台湾姉妹校とのオンライン交流を実施</strong>
+                <span>国際プログラム</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="program">
+      <div class="section-inner">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">3つの学び</h2>
+            <p class="section-copy">基礎学力を土台に、進路と社会をつなぐ実践的なカリキュラムを展開します。</p>
+          </div>
+        </div>
+
+        <div class="programs">
+          <article class="program-card">
+            <span class="number">01</span>
+            <h3>探究ラボ</h3>
+            <p>地域課題、科学、表現、ビジネスからテーマを選び、調査・制作・発表までを継続します。</p>
+          </article>
+          <article class="program-card">
+            <span class="number">02</span>
+            <h3>グローバル英語</h3>
+            <p>少人数会話、海外校交流、英語プレゼンを組み合わせ、使うための語学力を育てます。</p>
+          </article>
+          <article class="program-card">
+            <span class="number">03</span>
+            <h3>進路デザイン</h3>
+            <p>大学・専門学校・企業と連携し、面談とポートフォリオで一人ひとりの進路を支えます。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="life">
+      <div class="section-inner">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">学校生活</h2>
+            <p class="section-copy">行事、部活動、学年を越えたプロジェクトが日常の中にあります。</p>
+          </div>
+        </div>
+
+        <div class="life-band">
+          <div class="calendar">
+            <div class="calendar-row">
+              <div class="calendar-date">7月</div>
+              <div class="calendar-text">
+                <strong>青葉祭</strong>
+                <span>展示・ステージ・探究成果発表</span>
+              </div>
+            </div>
+            <div class="calendar-row">
+              <div class="calendar-date">9月</div>
+              <div class="calendar-text">
+                <strong>体育大会</strong>
+                <span>学年混合チームで実施</span>
+              </div>
+            </div>
+            <div class="calendar-row">
+              <div class="calendar-date">11月</div>
+              <div class="calendar-text">
+                <strong>キャリアフォーラム</strong>
+                <span>卒業生・地域企業による講演</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="club-grid">
+            <article class="club-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M8 18V5l11-2v13"></path>
+                <circle cx="6" cy="18" r="3"></circle>
+                <circle cx="17" cy="16" r="3"></circle>
+              </svg>
+              <h3>吹奏楽部</h3>
+              <p>地域イベントや定期演奏会で活動。</p>
+            </article>
+            <article class="club-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v20"></path>
+                <path d="M2 12h20"></path>
+                <path d="M4.9 4.9 19.1 19.1"></path>
+                <path d="M19.1 4.9 4.9 19.1"></path>
+              </svg>
+              <h3>バスケットボール部</h3>
+              <p>県大会ベスト8を目標に練習中。</p>
+            </article>
+            <article class="club-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 20h9"></path>
+                <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
+              </svg>
+              <h3>文芸・編集部</h3>
+              <p>校内誌とWebマガジンを制作。</p>
+            </article>
+            <article class="club-card">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10 2v8L4 20a2 2 0 0 0 1.7 3h12.6A2 2 0 0 0 20 20l-6-10V2"></path>
+                <path d="M8.5 2h7"></path>
+                <path d="M7 16h10"></path>
+              </svg>
+              <h3>サイエンス部</h3>
+              <p>研究発表会とロボット制作に挑戦。</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="admission">
+      <div class="section-inner">
+        <div class="admissions">
+          <div>
+            <h2>2027年度 入試情報</h2>
+            <p>募集要項、学校説明会、個別相談の日程を公開しています。校舎見学は平日夕方にも受付中です。</p>
+          </div>
+          <a class="primary-btn" href="#">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"></path>
+              <path d="M14 2v6h6"></path>
+              <path d="M16 13H8"></path>
+              <path d="M16 17H8"></path>
+              <path d="M10 9H8"></path>
+            </svg>
+            募集要項
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="access">
+    <div class="footer-inner">
+      <div>青葉みらい高等学校</div>
+      <div>〒225-0081 神奈川県横浜市青葉区みらい台 3-12-1 / 045-000-2026</div>
+    </div>
+  </footer>
+</body>
+</html>
