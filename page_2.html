@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>みどり坂高等学校</title>
+  <style>
+    body {
+      margin: 0;
+      color: #222;
+      background: #f6f8f5;
+      font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+      line-height: 1.7;
+    }
+
+    header {
+      padding: 18px 8%;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #28624a;
+    }
+
+    nav a {
+      margin-left: 18px;
+      color: #333;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .hero {
+      padding: 90px 8%;
+      background: linear-gradient(120deg, #e7f1ea, #ffffff);
+    }
+
+    .hero h1 {
+      margin: 0 0 18px;
+      font-size: 44px;
+      line-height: 1.25;
+    }
+
+    .hero p {
+      max-width: 620px;
+      margin: 0 0 28px;
+      color: #555;
+      font-size: 18px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 22px;
+      background: #28624a;
+      color: #fff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    main {
+      padding: 48px 8%;
+    }
+
+    section {
+      max-width: 980px;
+      margin: 0 auto 48px;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      color: #28624a;
+      font-size: 26px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card,
+    .news {
+      padding: 22px;
+      background: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .card p,
+    .news p {
+      margin: 0;
+      color: #555;
+    }
+
+    .news ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .news li {
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .news li:last-child {
+      border-bottom: none;
+    }
+
+    .date {
+      display: inline-block;
+      width: 86px;
+      color: #28624a;
+      font-weight: bold;
+    }
+
+    footer {
+      padding: 28px 8%;
+      background: #26332d;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    @media (max-width: 720px) {
+      header {
+        display: block;
+      }
+
+      nav {
+        margin-top: 12px;
+      }
+
+      nav a {
+        margin: 0 14px 0 0;
+      }
+
+      .hero {
+        padding: 60px 8%;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">みどり坂高等学校</div>
+    <nav>
+      <a href="#about">学校紹介</a>
+      <a href="#news">お知らせ</a>
+      <a href="#access">アクセス</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>学ぶ力と、進む力を育てる。</h1>
+    <p>
+      みどり坂高等学校は、落ち着いた環境の中で基礎学力・探究心・人との関わりを大切にする高校です。
+    </p>
+    <a class="button" href="#news">お知らせを見る</a>
+  </section>
+
+  <main>
+    <section id="about">
+      <h2>学校の特色</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>少人数の学習支援</h3>
+          <p>放課後の補習や個別相談で、一人ひとりの理解を丁寧に支えます。</p>
+        </div>
+        <div class="card">
+          <h3>探究活動</h3>
+          <p>地域や社会のテーマを調べ、発表する力を育てます。</p>
+        </div>
+        <div class="card">
+          <h3>充実した学校生活</h3>
+          <p>行事や部活動を通して、仲間と協力する経験を重ねます。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="news">
+      <h2>お知らせ</h2>
+      <div class="news">
+        <ul>
+          <li><span class="date">2026.06.20</span>夏の学校説明会の受付を開始しました。</li>
+          <li><span class="date">2026.06.12</span>部活動体験の日程を掲載しました。</li>
+          <li><span class="date">2026.06.01</span>入試相談会の案内を更新しました。</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer id="access">
+    みどり坂高等学校 / 〒000-0000 みどり市坂町1-2-3 / TEL 000-1234-5678
+  </footer>
+</body>
+</html>
