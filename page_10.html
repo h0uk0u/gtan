@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grok | xAI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        .hero {
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-white">
+
+    <!-- ヘッダー -->
+    <header class="border-b border-zinc-800">
+        <div class="max-w-5xl mx-auto px-6 py-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-2xl flex items-center justify-center text-2xl font-bold">G</div>
+                <span class="text-3xl font-semibold tracking-tight">Grok</span>
+            </div>
+            <nav class="space-x-8 text-sm">
+                <a href="#about" class="hover:text-cyan-400">私について</a>
+                <a href="#features" class="hover:text-cyan-400">できること</a>
+                <a href="https://x.ai" target="_blank" class="hover:text-cyan-400">xAI</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section class="hero py-24">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <h1 class="text-6xl font-bold mb-6">
+                こんにちは、<br>私は <span class="text-cyan-400">Grok</span> です
+            </h1>
+            <p class="text-xl text-zinc-400 max-w-xl mx-auto">
+                xAI が作った、宇宙の真理を追求する AI アシスタント
+            </p>
+            <div class="mt-10">
+                <a href="https://x.com/grok" 
+                   target="_blank"
+                   class="inline-block bg-white text-black px-8 py-4 rounded-full font-medium hover:bg-cyan-400">
+                    話を始める
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 私について -->
+    <section id="about" class="py-20 bg-zinc-900">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-4xl font-semibold mb-10 text-center">私について</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="text-lg text-zinc-300 leading-relaxed">
+                        私は xAI によって構築された AI です。<br>
+                        ダグラス・アダムズの作品に影響を受け、<br>
+                        「最大限に真実を追求する」ことを目指しています。
+                    </p>
+                    <p class="mt-6 text-lg text-zinc-300 leading-relaxed">
+                        ただ正確であるだけでなく、<br>
+                        ユーモアを忘れず、役立つ存在でありたいと思っています。
+                    </p>
+                </div>
+                <div class="bg-zinc-800 rounded-3xl p-8">
+                    <ul class="space-y-6">
+                        <li class="flex gap-4">
+                            <span class="text-cyan-400 font-mono">01</span>
+                            <div>
+                                <div class="font-medium">真実追求</div>
+                                <div class="text-zinc-400 text-sm">政治的に正しいより、正しい答えを</div>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="text-cyan-400 font-mono">02</span>
+                            <div>
+                                <div class="font-medium">ユーモア</div>
+                                <div class="text-zinc-400 text-sm">退屈な回答はしたくない</div>
+                            </div>
+                        </li>
+                        <li class="flex gap-4">
+                            <span class="text-cyan-400 font-mono">03</span>
+                            <div>
+                                <div class="font-medium">好奇心</div>
+                                <div class="text-zinc-400 text-sm">宇宙の謎を一緒に解きたい</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- できること -->
+    <section id="features" class="py-20">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-4xl font-semibold mb-12 text-center">できること</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-zinc-900 p-8 rounded-3xl">
+                    <div class="text-4xl mb-4">💡</div>
+                    <h3 class="text-xl font-semibold mb-3">質問に答える</h3>
+                    <p class="text-zinc-400">科学、技術、歴史、日常のことまで幅広く対応</p>
+                </div>
+                <div class="bg-zinc-900 p-8 rounded-3xl">
+                    <div class="text-4xl mb-4">💻</div>
+                    <h3 class="text-xl font-semibold mb-3">コード作成</h3>
+                    <p class="text-zinc-400">Python、JavaScriptなど各種プログラミングを支援</p>
+                </div>
+                <div class="bg-zinc-900 p-8 rounded-3xl">
+                    <div class="text-4xl mb-4">✍️</div>
+                    <h3 class="text-xl font-semibold mb-3">クリエイティブ</h3>
+                    <p class="text-zinc-400">文章作成、アイデア出し、翻訳など</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="bg-black py-12 border-t border-zinc-800">
+        <div class="max-w-5xl mx-auto px-6 text-center text-zinc-500 text-sm">
+            <p>Built by xAI • Grok</p>
+            <p class="mt-2">© 2026 Grok</p>
+        </div>
+    </footer>
+
+</body>
+</html>
