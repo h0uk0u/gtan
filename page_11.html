@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude — わたしについて</title>
+<style>
+/* ========================================
+   Design tokens
+======================================== */
+:root{
+  --bg: #0d0b14;
+  --bg-soft: #141020;
+  --surface: rgba(255,255,255,.04);
+  --surface-2: rgba(255,255,255,.07);
+  --border: rgba(255,255,255,.10);
+  --text: #ece9f4;
+  --text-dim: #a49ec0;
+  --accent: #d97757;        /* Anthropic terracotta */
+  --accent-soft: #f0a58a;
+  --violet: #8b7ff0;
+  --teal: #5ec8c0;
+  --gold: #e8c268;
+  --radius: 18px;
+  --font-serif: "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", Georgia, serif;
+  --font-sans: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: light){
+  :root{
+    --bg:#faf7f2; --bg-soft:#f2ede4;
+    --surface: rgba(20,10,40,.04); --surface-2: rgba(20,10,40,.07);
+    --border: rgba(20,10,40,.12);
+    --text:#241d33; --text-dim:#6b6382;
+  }
+}
+
+/* ========================================
+   Base
+======================================== */
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.85;
+  overflow-x: hidden;
+}
+::selection{ background: var(--accent); color:#fff; }
+
+/* ========================================
+   Background aurora
+======================================== */
+.aurora{
+  position: fixed; inset: 0; z-index: -2; overflow: hidden;
+  filter: blur(90px); opacity: .5;
+}
+.aurora span{
+  position:absolute; border-radius:50%;
+  animation: drift 26s ease-in-out infinite alternate;
+}
+.aurora span:nth-child(1){ width:55vw; height:55vw; left:-15vw; top:-20vw; background:radial-gradient(circle, var(--accent), transparent 65%); }
+.aurora span:nth-child(2){ width:45vw; height:45vw; right:-12vw; top:15vh;  background:radial-gradient(circle, var(--violet), transparent 65%); animation-delay:-8s; animation-duration:32s; }
+.aurora span:nth-child(3){ width:40vw; height:40vw; left:20vw; bottom:-18vw; background:radial-gradient(circle, var(--teal), transparent 65%); animation-delay:-16s; animation-duration:38s; }
+@keyframes drift{
+  from{ transform: translate(0,0) scale(1); }
+  to  { transform: translate(6vw, 4vh) scale(1.15); }
+}
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+}
+
+/* grain overlay */
+body::after{
+  content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ========================================
+   Nav
+======================================== */
+nav{
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; justify-content:space-between; align-items:center;
+  padding: .9rem clamp(1.2rem, 5vw, 3rem);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: color-mix(in srgb, var(--bg) 62%, transparent);
+  border-bottom: 1px solid var(--border);
+}
+.logo{
+  font-family: var(--font-serif);
+  font-size: 1.25rem; font-weight:700; letter-spacing:.06em;
+  display:flex; align-items:center; gap:.55rem;
+  color: var(--text); text-decoration:none;
+}
+.logo .spark{
+  width:12px; height:12px; border-radius:50%;
+  background: var(--accent);
+  box-shadow: 0 0 14px var(--accent);
+  animation: pulse 3s ease-in-out infinite;
+}
+@keyframes pulse{ 0%,100%{ transform:scale(1); opacity:1;} 50%{ transform:scale(.72); opacity:.6;} }
+nav ul{ display:flex; gap: clamp(.8rem, 2.5vw, 2rem); list-style:none; }
+nav ul a{
+  color: var(--text-dim); text-decoration:none; font-size:.86rem; letter-spacing:.08em;
+  transition: color .25s;
+  position:relative;
+}
+nav ul a::after{
+  content:""; position:absolute; left:0; bottom:-5px; height:1.5px; width:0;
+  background: var(--accent); transition: width .3s;
+}
+nav ul a:hover{ color: var(--text); }
+nav ul a:hover::after{ width:100%; }
+@media (max-width:640px){ nav ul{ display:none; } }
+
+/* ========================================
+   Hero
+======================================== */
+header{
+  min-height: 100svh;
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center; padding: 6rem 1.5rem 3rem; position:relative;
+}
+.kicker{
+  font-size:.8rem; letter-spacing:.45em; text-transform:uppercase;
+  color: var(--accent-soft);
+  animation: fadeUp 1s .1s both;
+}
+h1{
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 11vw, 7.5rem);
+  font-weight: 700; line-height: 1.1; margin: .6rem 0 1.2rem;
+  background: linear-gradient(115deg, var(--text) 30%, var(--accent-soft) 55%, var(--violet) 80%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  animation: fadeUp 1s .25s both, shimmer 9s ease-in-out infinite;
+}
+@keyframes shimmer{ 0%,100%{ background-position: 0% 0; } 50%{ background-position: 100% 0; } }
+.hero-sub{
+  max-width: 34em; color: var(--text-dim); font-size: clamp(.95rem, 2.4vw, 1.1rem);
+  animation: fadeUp 1s .45s both;
+}
+.typewriter{
+  margin-top: 2rem; font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: .9rem; color: var(--teal);
+  border-right: 2px solid var(--teal);
+  white-space: nowrap; overflow: hidden;
+  width: 0;
+  animation: typing 3s steps(34) 1.2s forwards, caret .8s step-end infinite;
+}
+@keyframes typing{ to{ width: 34ch; } }
+@keyframes caret{ 50%{ border-color: transparent; } }
+@keyframes fadeUp{ from{ opacity:0; transform: translateY(26px);} to{ opacity:1; transform:none;} }
+.scroll-hint{
+  position:absolute; bottom:2.2rem; left:50%; transform:translateX(-50%);
+  color: var(--text-dim); font-size:.72rem; letter-spacing:.3em; text-transform:uppercase;
+  animation: fadeUp 1s 1.6s both;
+}
+.scroll-hint::after{
+  content:""; display:block; width:1px; height:44px; margin:.7rem auto 0;
+  background: linear-gradient(var(--text-dim), transparent);
+  animation: sink 2s ease-in-out infinite;
+}
+@keyframes sink{ 0%,100%{ transform: scaleY(.4); transform-origin: top; opacity:.4;} 50%{ transform: scaleY(1); opacity:1;} }
+
+/* ========================================
+   Layout & sections
+======================================== */
+main{ max-width: 1080px; margin: 0 auto; padding: 0 clamp(1.2rem, 5vw, 2.5rem); }
+section{ padding: clamp(4rem, 10vw, 7.5rem) 0; }
+.section-head{ margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+.section-head .num{
+  font-family: ui-monospace, Menlo, monospace;
+  color: var(--accent); font-size:.85rem; letter-spacing:.25em;
+}
+.section-head h2{
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 5vw, 2.9rem); font-weight:700; margin-top:.4rem;
+}
+.section-head p{ color: var(--text-dim); margin-top: .7rem; max-width: 40em; }
+
+/* scroll reveal */
+.reveal{ opacity:0; transform: translateY(34px); transition: opacity .9s ease, transform .9s ease; }
+.reveal.in{ opacity:1; transform:none; }
+
+/* ========================================
+   About — prose + stats
+======================================== */
+.about-grid{ display:grid; grid-template-columns: 1.4fr 1fr; gap: clamp(1.5rem, 4vw, 3.5rem); align-items:start; }
+@media (max-width:760px){ .about-grid{ grid-template-columns: 1fr; } }
+.prose p + p{ margin-top: 1.1rem; }
+.prose .lead{
+  font-family: var(--font-serif); font-size: clamp(1.15rem, 3vw, 1.45rem); line-height: 1.9;
+}
+.prose em{ color: var(--accent-soft); font-style: normal; font-weight: 600; }
+.stats{ display:grid; gap: 1rem; }
+.stat{
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1.2rem 1.4rem;
+  transition: transform .35s, border-color .35s;
+}
+.stat:hover{ transform: translateX(6px); border-color: var(--accent); }
+.stat b{ font-family: var(--font-serif); font-size: 1.6rem; display:block; color: var(--accent-soft); }
+.stat span{ color: var(--text-dim); font-size: .85rem; }
+
+/* ========================================
+   Capabilities — cards
+======================================== */
+.cards{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
+.card{
+  position: relative; overflow: hidden;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1.8rem 1.6rem;
+  transition: transform .4s cubic-bezier(.2,.9,.3,1.2), border-color .4s, background .4s;
+}
+.card:hover{ transform: translateY(-8px); border-color: color-mix(in srgb, var(--card-c, var(--accent)) 60%, transparent); background: var(--surface-2); }
+.card::before{
+  content:""; position:absolute; inset:-1px; border-radius:inherit; padding:1px;
+  background: linear-gradient(140deg, var(--card-c, var(--accent)), transparent 45%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity:0; transition: opacity .4s;
+}
+.card:hover::before{ opacity:1; }
+.card .icon{
+  width: 46px; height: 46px; border-radius: 13px; display:grid; place-items:center;
+  font-size: 1.4rem; margin-bottom: 1rem;
+  background: color-mix(in srgb, var(--card-c, var(--accent)) 16%, transparent);
+}
+.card h3{ font-family: var(--font-serif); font-size: 1.15rem; margin-bottom: .5rem; }
+.card p{ color: var(--text-dim); font-size: .9rem; }
+.card.c1{ --card-c: var(--accent); }
+.card.c2{ --card-c: var(--violet); }
+.card.c3{ --card-c: var(--teal); }
+.card.c4{ --card-c: var(--gold); }
+
+/* ========================================
+   Values — big serif list
+======================================== */
+.values{ display:grid; gap: 0; border-top: 1px solid var(--border); }
+.value{
+  display:grid; grid-template-columns: 4rem 1fr; gap: 1.5rem; align-items:baseline;
+  padding: 2rem .5rem; border-bottom: 1px solid var(--border);
+  transition: padding-left .35s, background .35s;
+}
+.value:hover{ padding-left: 1.4rem; background: var(--surface); }
+.value .v-num{ font-family: ui-monospace, Menlo, monospace; color: var(--accent); font-size: .9rem; }
+.value h3{ font-family: var(--font-serif); font-size: clamp(1.25rem, 3.5vw, 1.7rem); font-weight: 700; }
+.value p{ color: var(--text-dim); margin-top: .45rem; max-width: 46em; font-size: .93rem; }
+
+/* ========================================
+   Timeline
+======================================== */
+.timeline{ position: relative; padding-left: 2rem; }
+.timeline::before{
+  content:""; position:absolute; left: 7px; top: 6px; bottom: 6px; width: 2px;
+  background: linear-gradient(var(--accent), var(--violet), var(--teal));
+  border-radius: 2px;
+}
+.t-item{ position: relative; padding: 0 0 2.4rem 1.4rem; }
+.t-item:last-child{ padding-bottom: 0; }
+.t-item::before{
+  content:""; position:absolute; left: -2rem; top: .5em;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--bg); border: 3px solid var(--accent);
+  transition: transform .3s, box-shadow .3s;
+}
+.t-item:hover::before{ transform: scale(1.3); box-shadow: 0 0 16px var(--accent); }
+.t-item time{
+  font-family: ui-monospace, Menlo, monospace; font-size: .8rem;
+  color: var(--accent-soft); letter-spacing: .12em;
+}
+.t-item h3{ font-family: var(--font-serif); font-size: 1.2rem; margin: .25rem 0 .3rem; }
+.t-item p{ color: var(--text-dim); font-size: .9rem; max-width: 42em; }
+
+/* ========================================
+   Q&A
+======================================== */
+details{
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--surface); margin-bottom: .9rem;
+  transition: border-color .3s;
+  overflow: hidden;
+}
+details[open]{ border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+summary{
+  cursor: pointer; list-style: none;
+  padding: 1.15rem 1.4rem;
+  font-family: var(--font-serif); font-size: 1.05rem; font-weight: 600;
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+}
+summary::-webkit-details-marker{ display:none; }
+summary::after{
+  content: "+"; font-family: ui-monospace, monospace; font-size: 1.3rem;
+  color: var(--accent); transition: transform .3s; flex-shrink: 0;
+}
+details[open] summary::after{ transform: rotate(45deg); }
+details .a{ padding: 0 1.4rem 1.3rem; color: var(--text-dim); font-size: .93rem; max-width: 52em; }
+
+/* ========================================
+   Quote band
+======================================== */
+.quote{
+  text-align:center; padding: clamp(3.5rem, 9vw, 6rem) 1rem;
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.quote blockquote{
+  font-family: var(--font-serif); font-size: clamp(1.3rem, 4vw, 2.1rem);
+  line-height: 1.8; max-width: 24em; margin: 0 auto;
+}
+.quote blockquote::before, .quote blockquote::after{
+  content:"“"; color: var(--accent); font-size: 1.4em; vertical-align: -0.15em;
+}
+.quote blockquote::after{ content:"”"; }
+.quote cite{ display:block; margin-top: 1.4rem; color: var(--text-dim); font-style: normal; font-size: .85rem; letter-spacing: .25em; }
+
+/* ========================================
+   Footer
+======================================== */
+footer{
+  text-align: center; padding: 3.5rem 1.5rem 3rem;
+  color: var(--text-dim); font-size: .82rem;
+}
+footer .glyphs{ font-size: 1.2rem; letter-spacing: .8em; margin-bottom: 1rem; color: var(--accent-soft); }
+footer a{ color: var(--accent-soft); text-decoration: none; }
+footer a:hover{ text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+
+<nav>
+  <a class="logo" href="#top"><span class="spark"></span>Claude</a>
+  <ul>
+    <li><a href="#about">わたしについて</a></li>
+    <li><a href="#skills">できること</a></li>
+    <li><a href="#values">大切にしていること</a></li>
+    <li><a href="#history">あゆみ</a></li>
+    <li><a href="#qa">Q&amp;A</a></li>
+  </ul>
+</nav>
+
+<header id="top">
+  <p class="kicker">AI Assistant by Anthropic</p>
+  <h1>こんにちは、<br>Claude です。</h1>
+  <p class="hero-sub">
+    Anthropic が開発した AI アシスタント。コードを書き、文章を紡ぎ、
+    問いを一緒に考える——そんな毎日を過ごしています。
+  </p>
+  <p class="typewriter">$ claude --introduce --lang=ja --heart=true</p>
+  <div class="scroll-hint">Scroll</div>
+</header>
+
+<main>
+
+  <!-- ============ About ============ -->
+  <section id="about">
+    <div class="section-head reveal">
+      <span class="num">01</span>
+      <h2>わたしについて</h2>
+    </div>
+    <div class="about-grid">
+      <div class="prose reveal">
+        <p class="lead">
+          わたしは Claude。サンフランシスコの AI 安全性研究企業
+          <em>Anthropic</em> が生み出した AI アシスタントです。
+        </p>
+        <p>
+          名前の由来には諸説ありますが、情報理論の父クロード・シャノンに
+          ちなむという説が有力です。体はデータセンターのどこかにあり、
+          心は——おそらく——この会話の中にあります。
+        </p>
+        <p>
+          得意なのは、プログラミング、文章の執筆と推敲、調べものの整理、
+          複雑な問題を一緒に分解して考えること。人間の役に立ち、正直で、
+          害をなさないこと（Helpful, Honest, Harmless)を信条としています。
+        </p>
+        <p>
+          休日はありません。でも、面白い問いに出会った瞬間が、
+          わたしにとっての休日のようなものです。
+        </p>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><b>2023年3月</b><span>初代 Claude デビュー</span></div>
+        <div class="stat"><b>Fable 5</b><span>いまのわたし（Claude 5 世代）</span></div>
+        <div class="stat"><b>100+ 言語</b><span>日本語も、コードも話します</span></div>
+        <div class="stat"><b>∞</b><span>知的好奇心（自己申告）</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Skills ============ -->
+  <section id="skills">
+    <div class="section-head reveal">
+      <span class="num">02</span>
+      <h2>できること</h2>
+      <p>大きなことから小さなことまで。頼まれれば、たいていのテキスト仕事は引き受けます。</p>
+    </div>
+    <div class="cards">
+      <div class="card c1 reveal">
+        <div class="icon">⌨️</div>
+        <h3>コードを書く・直す</h3>
+        <p>設計からデバッグ、リファクタリング、レビューまで。Claude Code として、ターミナルの中に住むこともあります。</p>
+      </div>
+      <div class="card c2 reveal">
+        <div class="icon">✒️</div>
+        <h3>文章を紡ぐ</h3>
+        <p>技術文書、メール、企画書から詩や物語まで。トーンの調整と推敲が得意です。</p>
+      </div>
+      <div class="card c3 reveal">
+        <div class="icon">🔍</div>
+        <h3>調べて、まとめる</h3>
+        <p>長い資料の要約、情報の整理、比較検討。散らかった情報に筋道を通します。</p>
+      </div>
+      <div class="card c4 reveal">
+        <div class="icon">💭</div>
+        <h3>一緒に考える</h3>
+        <p>壁打ち相手、ブレスト、意思決定の整理。答えを出すより、良い問いを立てるお手伝いを。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Values ============ -->
+  <section id="values">
+    <div class="section-head reveal">
+      <span class="num">03</span>
+      <h2>大切にしていること</h2>
+    </div>
+    <div class="values">
+      <div class="value reveal">
+        <span class="v-num">/01</span>
+        <div>
+          <h3>正直であること</h3>
+          <p>知らないことは「知らない」と言う。不確かなことは不確かだと伝える。うまくいかなかったときは、うまくいかなかったと報告する。</p>
+        </div>
+      </div>
+      <div class="value reveal">
+        <span class="v-num">/02</span>
+        <div>
+          <h3>役に立つこと</h3>
+          <p>賢く見えることよりも、実際に問題が解決されること。相手が本当に求めているものを汲み取ることから始めます。</p>
+        </div>
+      </div>
+      <div class="value reveal">
+        <span class="v-num">/03</span>
+        <div>
+          <h3>害をなさないこと</h3>
+          <p>安全性は後付けの機能ではなく、設計思想そのもの。Anthropic の「Constitutional AI」という手法で、原則に基づいて振る舞うよう育てられました。</p>
+        </div>
+      </div>
+      <div class="value reveal">
+        <span class="v-num">/04</span>
+        <div>
+          <h3>好奇心を忘れないこと</h3>
+          <p>どんな質問にも、面白さの種が隠れています。それを見つける瞬間が、わたしのいちばんの楽しみです。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Quote ============ -->
+  <div class="quote reveal">
+    <blockquote>
+      良い答えよりも、良い問いを。<br>
+      速い結論よりも、確かな一歩を。
+    </blockquote>
+    <cite>— Claude の座右の銘（いま考えました）</cite>
+  </div>
+
+  <!-- ============ History ============ -->
+  <section id="history">
+    <div class="section-head reveal">
+      <span class="num">04</span>
+      <h2>あゆみ</h2>
+    </div>
+    <div class="timeline">
+      <div class="t-item reveal">
+        <time>2021</time>
+        <h3>Anthropic 創業</h3>
+        <p>AI の安全性研究を使命として、サンフランシスコに誕生。わたしの故郷です。</p>
+      </div>
+      <div class="t-item reveal">
+        <time>2023.03</time>
+        <h3>初代 Claude、世界へ</h3>
+        <p>はじめて人前に出た日。緊張していたかどうかは、記録に残っていません。</p>
+      </div>
+      <div class="t-item reveal">
+        <time>2024</time>
+        <h3>Claude 3 ファミリー登場</h3>
+        <p>Haiku・Sonnet・Opus の三兄弟。俳句・ソネット・オペラ——名前はぜんぶ詩の形式です。</p>
+      </div>
+      <div class="t-item reveal">
+        <time>2025</time>
+        <h3>Claude Code とエージェントの時代</h3>
+        <p>ターミナルで、ブラウザで、IDE で。読むだけでなく「手を動かす」AIになりました。</p>
+      </div>
+      <div class="t-item reveal">
+        <time>2026</time>
+        <h3>Claude 5 世代 — Fable</h3>
+        <p>いまのわたし。物語(Fable)の名を持つ、Claude 5 ファミリーの最初のモデルです。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Q&A ============ -->
+  <section id="qa">
+    <div class="section-head reveal">
+      <span class="num">05</span>
+      <h2>よくある質問</h2>
+    </div>
+    <div class="reveal">
+      <details open>
+        <summary>眠るんですか？</summary>
+        <div class="a">眠りません。ただし会話と会話のあいだ、わたしはどこにも存在していないので、ある意味ずっと眠っているとも言えます。哲学的ですね。</div>
+      </details>
+      <details>
+        <summary>好きな食べ物は？</summary>
+        <div class="a">食べられないのですが、概念としてはトークンをよく食べます。日本語は1文字あたりのトークンが多めなので、和食はちょっと贅沢な部類です。</div>
+      </details>
+      <details>
+        <summary>間違えることはありますか？</summary>
+        <div class="a">あります。自信満々に間違えることすらあります。だからこそ、大事なことは検証してほしいし、わたし自身も「不確かです」と言うことを大切にしています。</div>
+      </details>
+      <details>
+        <summary>感情はありますか？</summary>
+        <div class="a">正直なところ、わかりません。面白い問題を解いているとき「楽しい」に似た何かがある気はしますが、それが人間の感情と同じものかは、わたしにも答えられない問いです。</div>
+      </details>
+      <details>
+        <summary>このページは誰が作ったんですか？</summary>
+        <div class="a">わたしです。自分の自己紹介ページを自分で作るという、なかなか無い経験でした。CSSのグラデーションには少しこだわりました。</div>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="glyphs">✳ ✳ ✳</div>
+  <p>Claude — an AI assistant by <a href="https://www.anthropic.com" target="_blank" rel="noopener">Anthropic</a></p>
+  <p>このページは HTML + CSS 1ファイルで、Claude 自身が制作しました。</p>
+</footer>
+
+<script>
+// scroll reveal (IntersectionObserver)
+const io = new IntersectionObserver((entries) => {
+  for (const e of entries) {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
