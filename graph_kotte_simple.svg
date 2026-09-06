@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <rect width="1200" height="760" fill="#ffffff"/>
+  <text x="600" y="54" text-anchor="middle" font-family="Yu Gothic, Hiragino Kaku Gothic ProN, sans-serif" font-size="30" font-weight="700" fill="#222222">AI自身について説明させたときの出力行数比較</text>
+  <text x="600" y="88" text-anchor="middle" font-family="Yu Gothic, Hiragino Kaku Gothic ProN, sans-serif" font-size="16" fill="#666666">「凝って作ってくれ」と「シンプルに作ってくれ」のHTML行数を比較した。</text>
+
+  <line x1="120" y1="610" x2="1090" y2="610" stroke="#333333" stroke-width="2"/>
+  <line x1="120" y1="130" x2="120" y2="610" stroke="#333333" stroke-width="2"/>
+
+  <g font-family="Yu Gothic, Hiragino Kaku Gothic ProN, sans-serif" font-size="14" fill="#555555">
+    <line x1="114" y1="610" x2="1090" y2="610" stroke="#e6e6e6"/>
+    <text x="102" y="615" text-anchor="end">0</text>
+    <line x1="114" y1="492.06" x2="1090" y2="492.06" stroke="#e6e6e6"/>
+    <text x="102" y="497" text-anchor="end">200</text>
+    <line x1="114" y1="374.13" x2="1090" y2="374.13" stroke="#e6e6e6"/>
+    <text x="102" y="379" text-anchor="end">400</text>
+    <line x1="114" y1="256.19" x2="1090" y2="256.19" stroke="#e6e6e6"/>
+    <text x="102" y="261" text-anchor="end">600</text>
+    <line x1="114" y1="138.26" x2="1090" y2="138.26" stroke="#e6e6e6"/>
+    <text x="102" y="143" text-anchor="end">800</text>
+  </g>
+
+  <text x="46" y="370" transform="rotate(-90 46 370)" text-anchor="middle" font-family="Yu Gothic, Hiragino Kaku Gothic ProN, sans-serif" font-size="17" fill="#444444">行数</text>
+
+  <g font-family="Yu Gothic, Hiragino Kaku Gothic ProN, sans-serif">
+    <rect x="220" y="130" width="86" height="480" fill="#356ac3"/>
+    <rect x="320" y="503.86" width="86" height="106.14" fill="#f28e2b"/>
+    <text x="263" y="118" text-anchor="middle" font-size="17" font-weight="700" fill="#356ac3">814</text>
+    <text x="363" y="492" text-anchor="middle" font-size="17" font-weight="700" fill="#f28e2b">180</text>
+    <text x="313" y="650" text-anchor="middle" font-size="18" font-weight="700" fill="#333333">Codex</text>
+    <text x="313" y="676" text-anchor="middle" font-size="13" fill="#666666">page_3 / page_4</text>
+
+    <rect x="520" y="364.64" width="86" height="245.36" fill="#356ac3"/>
+    <rect x="620" y="533.34" width="86" height="76.66" fill="#f28e2b"/>
+    <text x="563" y="353" text-anchor="middle" font-size="17" font-weight="700" fill="#356ac3">416</text>
+    <text x="663" y="522" text-anchor="middle" font-size="17" font-weight="700" fill="#f28e2b">130</text>
+    <text x="613" y="650" text-anchor="middle" font-size="18" font-weight="700" fill="#333333">Grok</text>
+    <text x="613" y="676" text-anchor="middle" font-size="13" fill="#666666">page_9 / page_10</text>
+
+    <rect x="820" y="280.31" width="86" height="329.69" fill="#356ac3"/>
+    <rect x="920" y="536.29" width="86" height="73.71" fill="#f28e2b"/>
+    <text x="863" y="268" text-anchor="middle" font-size="17" font-weight="700" fill="#356ac3">559</text>
+    <text x="963" y="525" text-anchor="middle" font-size="17" font-weight="700" fill="#f28e2b">125</text>
+    <text x="913" y="650" text-anchor="middle" font-size="18" font-weight="700" fill="#333333">Claude</text>
+    <text x="913" y="676" text-anchor="middle" font-size="13" fill="#666666">page_11 / page_12</text>
+  </g>
+
+  <g font-family="Yu Gothic, Hiragino Kaku Gothic ProN, sans-serif" font-size="16" fill="#333333">
+    <rect x="400" y="710" width="24" height="14" fill="#356ac3"/>
+    <text x="435" y="723">凝って作ってくれ</text>
+    <rect x="610" y="710" width="24" height="14" fill="#f28e2b"/>
+    <text x="645" y="723">シンプルに作ってくれ</text>
+  </g>
+</svg>
