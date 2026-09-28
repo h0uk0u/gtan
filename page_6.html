@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codex 紹介</title>
+  <style>
+    body {
+      margin: 0;
+      color: #222;
+      background: #f7f7f7;
+      font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+      line-height: 1.7;
+    }
+
+    header {
+      padding: 20px 8%;
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    nav a {
+      margin-left: 18px;
+      color: #333;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .hero {
+      padding: 80px 8%;
+      background: #fff;
+    }
+
+    .hero h1 {
+      margin: 0 0 16px;
+      font-size: 44px;
+      line-height: 1.25;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 0;
+      color: #555;
+      font-size: 18px;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 48px 8%;
+    }
+
+    section {
+      margin-bottom: 44px;
+    }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: 26px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      padding: 22px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .card p,
+    li {
+      color: #555;
+    }
+
+    footer {
+      padding: 24px 8%;
+      background: #222;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    @media (max-width: 720px) {
+      header {
+        display: block;
+      }
+
+      nav {
+        margin-top: 10px;
+      }
+
+      nav a {
+        margin: 0 14px 0 0;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Codex</div>
+    <nav>
+      <a href="#about">概要</a>
+      <a href="#features">できること</a>
+      <a href="#flow">流れ</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>開発を手伝う AI エージェント</h1>
+    <p>
+      Codex は OpenAI の coding agent です。コードを書くだけでなく、既存コードの理解、レビュー、デバッグ、確認作業まで支援します。
+    </p>
+  </section>
+
+  <main>
+    <section id="about">
+      <h2>Codex とは</h2>
+      <p>
+        ソフトウェア開発の作業を、会話しながら一緒に進めるための AI です。プロジェクトの構成を読み、必要な変更を行い、結果を説明します。
+      </p>
+    </section>
+
+    <section id="features">
+      <h2>できること</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>実装</h3>
+          <p>新しい機能や画面を、既存の書き方に合わせて作ります。</p>
+        </div>
+        <div class="card">
+          <h3>理解</h3>
+          <p>知らないコードの構造や処理の流れを整理します。</p>
+        </div>
+        <div class="card">
+          <h3>修正</h3>
+          <p>バグの原因を探し、必要な修正と確認を行います。</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="flow">
+      <h2>使い方</h2>
+      <ul>
+        <li>やりたいことを短く伝える</li>
+        <li>Codex がコードを確認する</li>
+        <li>変更、確認、報告まで進める</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    Codex introduction page
+  </footer>
+</body>
+</html>
